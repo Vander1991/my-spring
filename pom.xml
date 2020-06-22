@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>mine.framework</groupId>
+    <artifactId>my-spring</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>step1-container-register-and-get</module>
+        <module>step2-abstract-beanfactory-and-create-bean</module>
+        <module>step3-inject-bean-with-property</module>
+        <module>step4-config-beanfactory-with-xml</module>
+        <module>step5-inject-bean-to-bean</module>
+        <module>step6-invite-application-context</module>
+        <module>step7-method-interceptor-by-jdk-dynamic-proxy</module>
+        <module>step8-invite-pointcut-and-aspectj</module>
+        <module>step9-auto-create-aop-proxy</module>
+        <module>step10-invite-cglib-and-aopproxy-factory</module>
+    </modules>
+    <packaging>pom</packaging>
+    <properties>
+        <java.version>1.8</java.version>
+        <console_log.version>1.0-SNAPSHOT</console_log.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>szu.vander</groupId>
+            <artifactId>console_log</artifactId>
+            <version>${console_log.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
+        </dependency>
+    </dependencies>
+
+    <!-- maven插件 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
