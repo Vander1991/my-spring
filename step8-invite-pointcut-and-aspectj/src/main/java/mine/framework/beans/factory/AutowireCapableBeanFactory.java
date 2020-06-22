@@ -1,0 +1,39 @@
+package mine.framework.beans.factory;
+
+import mine.framework.beans.PropertyValue;
+import mine.framework.beans.factory.config.BeanDefinition;
+import mine.framework.beans.factory.config.BeanReference;
+
+import java.lang.reflect.Field;
+
+/**
+ * @author : Vander
+ * @date :   2020/5/29
+ * @description : 增加反射调用设置Bean的属性
+ */
+public class AutowireCapableBeanFactory extends AbstractBeanFactory {
+
+    @Override
+    protected void applyPropertyValues(Object bean, BeanDefinition beanDefinition) {
+        for (PropertyValue propertyValue : beanDefinition.getPropertyValues().getPropertyValueList()) {
+            Class<?> beanClass = bean.getClass();
+            try {
+                Field field = beanClass.getDeclaredField(propertyValue.getName());
+                field.setAccessible(true);
+                Object value = propertyValue.getValue();
+                if(value instanceof BeanReference) {
+                    BeanReference beanReference = (BeanReference)value;
+                    value = getBean(beanReference.getName());
+                }
+                field.set(bean, value);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}
